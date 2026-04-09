@@ -1,0 +1,1 @@
+uv run python src/mark/agent.py console

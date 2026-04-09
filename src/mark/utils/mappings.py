@@ -1,0 +1,17 @@
+url_map = {
+    "world": "https://worldmonitor.app",
+    "news": "https://worldmonitor.app",
+    "world news": "https://worldmonitor.app",
+    "youtube": "https://youtube.com",
+    "instagram": "https://instagram.com",
+    "linkedin": "https://linkedin.com",
+    "jobs": "https://linkedin.com/jobs",
+    "mail": "https://mail.google.com",
+    "email": "https://mail.google.com",
+    "gmail": "https://mail.google.com",
+    "chatgpt": "https://chatgpt.com",
+    "github": "https://github.com",
+    "twitter": "https://x.com",
+    "x": "https://x.com",
+    "whatsapp": "https://web.whatsapp.com",
+}
