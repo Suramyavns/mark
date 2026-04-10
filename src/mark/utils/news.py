@@ -25,7 +25,7 @@ async def get_latest_news() -> str:
                 title = item.get("title")
                 source = item.get("source")
                 if title:
-                    headlines.append(f"{title} (Source: {source})")
+                    headlines.append(f"{title}, from {source}.")
 
             if not headlines:
                 return "I couldn't find any news headlines right now."

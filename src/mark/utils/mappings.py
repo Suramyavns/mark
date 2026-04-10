@@ -1,4 +1,8 @@
 url_map = {
+    "blank": "about:blank",
+    "browser": "about:blank",
+    "google": "https://google.com",
+    "search": "https://google.com",
     "world": "https://worldmonitor.app",
     "news": "https://worldmonitor.app",
     "world news": "https://worldmonitor.app",
@@ -14,4 +18,6 @@ url_map = {
     "twitter": "https://x.com",
     "x": "https://x.com",
     "whatsapp": "https://web.whatsapp.com",
+    "spotify": "https://open.spotify.com",
+    "notion": "https://notion.so",
 }
