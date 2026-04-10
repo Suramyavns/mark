@@ -15,7 +15,7 @@ from livekit.agents import (
     room_io,
 )
 import os
-from livekit.plugins import silero, cartesia, baseten
+from livekit.plugins import silero, cartesia, baseten, elevenlabs, deepgram
 from livekit.agents.voice.turn import TurnHandlingOptions
 from mark.lib.browser import open_url
 from mark.utils.mappings import url_map
@@ -143,7 +143,7 @@ async def my_agent(ctx: JobContext):
     session = AgentSession(
         # Speech-to-text (STT) is your agent's ears, turning the user's speech into text that the LLM can understand
         # See all available models at https://docs.livekit.io/agents/models/stt/
-        stt=cartesia.STT(model="ink-whisper"),
+        stt=deepgram.STT(model="nova-3",language="en"),
         # A Large Language Model (LLM) is your agent's brain, processing user input and generating a response
         # See all available models at https://docs.livekit.io/agents/models/llm/
         llm=baseten.LLM(
@@ -151,7 +151,7 @@ async def my_agent(ctx: JobContext):
         ),
         # Text-to-speech (TTS) is your agent's voice, turning the LLM's text into speech that the user can hear
         # See all available models as well as voice selections at https://docs.livekit.io/agents/models/tts/
-        tts=cartesia.TTS(model="sonic-3",voice="a167e0f3-df7e-4d52-a9c3-f949145efdab"),
+        tts=deepgram.TTS(model='aura-2-mars-en'),
         # VAD and turn detection are used to determine when the user is speaking and when the agent should respond
         # See more at https://docs.livekit.io/agents/build/turns
         vad=ctx.proc.userdata["vad"],
