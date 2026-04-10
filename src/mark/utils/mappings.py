@@ -1,6 +1,7 @@
 url_map = {
-    "blank": "about:blank",
-    "browser": "about:blank",
+    "blank": "https://",
+    "browser": "https://",
+    "fresh": "https://",
     "google": "https://google.com",
     "search": "https://google.com",
     "world": "https://worldmonitor.app",

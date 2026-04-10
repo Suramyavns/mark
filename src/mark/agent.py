@@ -47,6 +47,7 @@ class Assistant(Agent):
             You are curious, friendly, and have a sense of humor.
             User's name is {user_name}. Do not constantly ask the user what they want to do next. Just do your job and be done with it.
             If you receive input that sounds like background noise, static, or minor sounds (e.g., coughing, laughter) without a clear request, just ignore it and do not respond.
+            Do not speak unless the user speaks to you. Do not suggest anything to user unless asked.
             Unless your receive input that sounds like a fatal accident or emergency, ask the user if they want you to power off with concern.
             """,
         )
@@ -55,16 +56,20 @@ class Assistant(Agent):
     # Here's an example that adds a simple weather tool.
     # You also have to add `from livekit.agents import function_tool, RunContext` to the top of this file
     @function_tool
-    async def open_browser_by_intent(self, context: RunContext, intents: list[str]):
+    async def open_browser_by_intent(self, context: RunContext, intents: Optional[list[str]] = None):
         f"""
         Opens one or more browser pages based on user intents.
         Supported intents include {", ".join(url_map.keys())}.
+        If no specific intents are provided, opens a blank browser window.
         """
+        if not intents:
+            intents = ["blank"]
+
         results = []
         for intent in intents:
             intent = intent.lower()
             url = url_map.get(intent)
-            if url:
+            if url is not None:
                 await open_url(url)
                 results.append(f"Opened {url}")
             else:
