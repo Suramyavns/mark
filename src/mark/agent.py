@@ -15,7 +15,8 @@ from livekit.agents import (
     room_io,
 )
 import os
-from livekit.plugins import ai_coustics, noise_cancellation, silero
+from livekit.plugins import silero, cartesia, mistralai
+from livekit.agents.voice.turn import TurnHandlingOptions
 from mark.lib.browser import open_url
 from mark.utils.mappings import url_map
 from mark.utils.weather import get_time_greeting, get_weather_info
@@ -125,13 +126,10 @@ class Assistant(Agent):
 
 server = AgentServer()
 
-
 def prewarm(proc: JobProcess):
     proc.userdata["vad"] = silero.VAD.load()
 
-
 server.setup_fnc = prewarm
-
 
 @server.rtc_session(agent_name=agent_name)
 async def my_agent(ctx: JobContext):
@@ -145,17 +143,17 @@ async def my_agent(ctx: JobContext):
     session = AgentSession(
         # Speech-to-text (STT) is your agent's ears, turning the user's speech into text that the LLM can understand
         # See all available models at https://docs.livekit.io/agents/models/stt/
-        stt=inference.STT(model="elevenlabs/scribe_v2_realtime", language="en"),
+        stt=cartesia.STT(model="ink-whisper"),
         # A Large Language Model (LLM) is your agent's brain, processing user input and generating a response
         # See all available models at https://docs.livekit.io/agents/models/llm/
-        llm=inference.LLM(model="openai/gpt-5.2-chat-latest"),
+        llm=mistralai.LLM(model="mistral-medium-latest"),
         # Text-to-speech (TTS) is your agent's voice, turning the LLM's text into speech that the user can hear
         # See all available models as well as voice selections at https://docs.livekit.io/agents/models/tts/
-        tts=inference.TTS(model="cartesia/sonic-3"),
+        tts=cartesia.TTS(model="sonic-3",voice="a167e0f3-df7e-4d52-a9c3-f949145efdab"),
         # VAD and turn detection are used to determine when the user is speaking and when the agent should respond
         # See more at https://docs.livekit.io/agents/build/turns
         vad=ctx.proc.userdata["vad"],
-        turn_detection="stt",
+        turn_handling=TurnHandlingOptions(),
         # allow the LLM to generate a response while waiting for the end of turn
         # See more at https://docs.livekit.io/agents/build/audio/#preemptive-generation
         preemptive_generation=True,
@@ -176,6 +174,8 @@ async def my_agent(ctx: JobContext):
                     )
                 ),
             ),
+            close_on_disconnect=True,
+            delete_room_on_close=True,
         ),
     )
 
