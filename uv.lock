@@ -1256,6 +1256,9 @@ wheels = [
 ]
 
 [package.optional-dependencies]
+baseten = [
+    { name = "livekit-plugins-baseten" },
+]
 cartesia = [
     { name = "livekit-plugins-cartesia" },
 ]
@@ -1353,6 +1356,20 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/3a/3d/74d7747cb63c41c3063f5af1010611eedf7b6d8696f32116901c6456d5dd/livekit_plugins_ai_coustics-0.2.7-cp310-abi3-manylinux_2_28_aarch64.whl", hash = "sha256:6e9b465cddd49a0ef499fed1d7545aa18db70992b02cdfe271a8166440891672", size = 79802396, upload-time = "2026-03-26T16:29:41.516Z" },
     { url = "https://files.pythonhosted.org/packages/0a/de/600d2d3ce73c08a1c7e983ff405bab65e2a853c8be67277f0fc6313abb93/livekit_plugins_ai_coustics-0.2.7-cp310-abi3-manylinux_2_28_x86_64.whl", hash = "sha256:4f1f068b0bb2a1c6102486f788d808eb65bc67057c0a0d6bf9507d882446b315", size = 80126041, upload-time = "2026-03-26T16:29:47.737Z" },
     { url = "https://files.pythonhosted.org/packages/37/24/4977e0a9f82273083470e48267bc1fbf7aa7a59db1b3dce01574f9333b2b/livekit_plugins_ai_coustics-0.2.7-cp310-abi3-win_amd64.whl", hash = "sha256:b3ba0215b78c5384b60fe25cdaf408e1e285cb83acf09573a5174f38fb4568f2", size = 79530452, upload-time = "2026-03-26T16:29:54.117Z" },
+]
+
+[[package]]
+name = "livekit-plugins-baseten"
+version = "1.5.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "aiohttp" },
+    { name = "livekit" },
+    { name = "livekit-agents" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/f1/10/1a06dcf278d6bbbcc7de36fa3af2d80d2d6fe87e79c555c114e9997c5fb8/livekit_plugins_baseten-1.5.2.tar.gz", hash = "sha256:9ddcd7713e24c5cb7ac86b1a915244050f723eae07ec89073cf6eb53f533b264", size = 12418, upload-time = "2026-04-08T22:11:36.673Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f6/0f/5b31324452b13d88f11a2169b97c2ad09a2d72a9b9235db5e54c19166f40/livekit_plugins_baseten-1.5.2-py3-none-any.whl", hash = "sha256:8487f8ac72f6bea7ada933102d486a59689b3eb58040cff70c871ad305b96f84", size = 15136, upload-time = "2026-04-08T22:11:35.121Z" },
 ]
 
 [[package]]
@@ -1491,7 +1508,7 @@ version = "1.0.0"
 source = { editable = "." }
 dependencies = [
     { name = "httpx" },
-    { name = "livekit-agents", extra = ["cartesia", "google", "groq", "mistralai", "openai", "silero", "turn-detector"] },
+    { name = "livekit-agents", extra = ["baseten", "cartesia", "google", "groq", "mistralai", "openai", "silero", "turn-detector"] },
     { name = "livekit-plugins-ai-coustics" },
     { name = "livekit-plugins-noise-cancellation" },
     { name = "playwright" },
@@ -1508,7 +1525,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "httpx", specifier = ">=0.28.1" },
-    { name = "livekit-agents", extras = ["cartesia", "google", "groq", "mistralai", "openai", "silero", "turn-detector"], specifier = "~=1.4" },
+    { name = "livekit-agents", extras = ["baseten", "cartesia", "google", "groq", "mistralai", "openai", "silero", "turn-detector"], specifier = "~=1.4" },
     { name = "livekit-plugins-ai-coustics" },
     { name = "livekit-plugins-noise-cancellation", specifier = "~=0.2" },
     { name = "playwright", specifier = ">=1.58.0" },

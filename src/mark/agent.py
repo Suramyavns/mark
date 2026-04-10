@@ -15,7 +15,7 @@ from livekit.agents import (
     room_io,
 )
 import os
-from livekit.plugins import silero, cartesia, groq
+from livekit.plugins import silero, cartesia, baseten
 from livekit.agents.voice.turn import TurnHandlingOptions
 from mark.lib.browser import open_url
 from mark.utils.mappings import url_map
@@ -146,7 +146,9 @@ async def my_agent(ctx: JobContext):
         stt=cartesia.STT(model="ink-whisper"),
         # A Large Language Model (LLM) is your agent's brain, processing user input and generating a response
         # See all available models at https://docs.livekit.io/agents/models/llm/
-        llm=groq.LLM(model="llama-3.1-8b-instant"),
+        llm=baseten.LLM(
+            model="openai/gpt-oss-120b"
+        ),
         # Text-to-speech (TTS) is your agent's voice, turning the LLM's text into speech that the user can hear
         # See all available models as well as voice selections at https://docs.livekit.io/agents/models/tts/
         tts=cartesia.TTS(model="sonic-3",voice="a167e0f3-df7e-4d52-a9c3-f949145efdab"),

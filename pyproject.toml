@@ -10,7 +10,7 @@ requires-python = ">=3.10, <3.15"
 
 dependencies = [
     "httpx>=0.28.1",
-    "livekit-agents[cartesia,google,groq,mistralai,openai,silero,turn-detector]~=1.4",
+    "livekit-agents[baseten,cartesia,google,groq,mistralai,openai,silero,turn-detector]~=1.4",
     "livekit-plugins-ai-coustics",
     "livekit-plugins-noise-cancellation~=0.2",
     "playwright>=1.58.0",
